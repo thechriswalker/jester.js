@@ -1,0 +1,90 @@
+<!doctype html>
+<head>
+    <title>jester.js</title>
+    <style>
+        .r { border:1px solid red;}
+        .g { border:1px solid green;}
+        .e div {
+            padding:5px;
+            width:200px;
+            display:inline-block;
+            margin:5px;
+        }
+    </style>
+    <script type="text/javascript" src="jester.js"></script>
+</head>
+<body>
+    <h1>jester.js - is a gesture framework</h1>
+    <p>Currently doesn't support pinch except on iOS and needs the ability to unbund events, but heres the code for this example:</p>
+    <pre><code>var $ = function(s){ return document.querySelector(s); }
+jester.bind(
+    $('#playground'),
+    jester.scroll('vertical'),
+    {
+      start: function(){ $('#vertical').className = 'g'; },
+       move: function(){ $('#vertical span').innerText = this.curY - this.srcY; },
+        end: function(){ $('#vertical').className = 'r'; }
+    }
+);
+
+jester.bind(
+  $('#playground'),
+    jester.scroll('horizontal'),
+    {
+      start: function(){ $('#horizontal').className = 'g'; },
+       move: function(){ $('#horizontal span').innerText = this.curX - this.srcX; },
+        end: function(){ $('#horizontal').className = 'r'; }
+    }
+);
+
+jester.bind(
+    $('#playground'),
+    jester.pinch,
+    {
+      start: function(){ $('#pinch').className = 'g'; },
+       move: function(){ $('#pinch span').innerText = this.scale.toFixed(2); },
+        end: function(){ $('#pinch').className = 'r'; }
+    }
+);
+    </code></pre>
+    <p>In the box below you can do a horizontal/vertical scroll, or a 2 finger pinch</p>
+    <div class="e">
+        <div class="r" id="horizontal">Horizontal Scroll! <span>0</span>px</div>
+        <div class="r" id="vertical">Vertical Scroll! <span>0</span>px</div>
+        <div class="r" id="pinch">Pinch! <span>1.00</span>x</div>
+    </div>
+    <div id="playground" style="width:80%;height:400px;background:#eee;"></div>
+    <script type="text/javascript">
+    var $ = function(s){ return document.querySelector(s); }
+    jester.bind(
+        $('#playground'),
+        jester.scroll('vertical'),
+        {
+          start: function(){ $('#vertical').className = 'g'; },
+           move: function(){ $('#vertical span').innerText = this.curY - this.srcY; },
+            end: function(){ $('#vertical').className = 'r'; }
+        }
+    );
+
+    jester.bind(
+      $('#playground'),
+        jester.scroll('horizontal'),
+        {
+          start: function(){ $('#horizontal').className = 'g'; },
+           move: function(){ $('#horizontal span').innerText = this.curX - this.srcX; },
+            end: function(){ $('#horizontal').className = 'r'; }
+        }
+    );
+
+    jester.bind(
+        $('#playground'),
+        jester.pinch,
+        {
+          start: function(){ $('#pinch').className = 'g'; },
+           move: function(){ $('#pinch span').innerText = this.scale.toFixed(2); },
+            end: function(){ $('#pinch').className = 'r'; }
+        }
+    );
+    </script>
+</body>
+</html>
