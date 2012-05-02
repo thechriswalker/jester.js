@@ -11,6 +11,21 @@
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <style>
+        .r { border:1px solid red;}
+        .g { border:1px solid green;}
+        .e div {
+            padding:8px 15px;
+            border-radius:5px;
+            margin-bottom:5px;
+        }
+        #playground { 
+            height: 300px;
+            background: #f8f8f8;  
+            border-radius:5px;
+            border:1px solid #e5e5e5;
+        }
+    </style>
   </head>
   <body>
     <div class="wrapper">
@@ -40,13 +55,53 @@
 </code></pre>
 
 <h3>demo</h3>
+<div class="e">
+  <div class="r" id="horizontal">Horizontal Scroll! <span>0</span>px</div>
+  <div class="r" id="vertical">Vertical Scroll! <span>0</span>px</div>
+  <div class="r" id="pinch">Pinch! <span>1.00</span>x</div>
+</div>
+<div id="playground"></div>
+<script src="https://raw.github.com/thechriswalker/jester.js/master/jester.js"></script>
+<script type="text/javascript">
+    var $ = function(s){ return document.querySelector(s); }
+    jester.bind(
+        $('#playground'),
+        jester.scroll('vertical'),
+        {
+          start: function(){ $('#vertical').className = 'g'; },
+           move: function(){ $('#vertical span').innerText = this.curY - this.srcY; },
+            end: function(){ $('#vertical').className = 'r'; }
+        }
+    );
+
+    jester.bind(
+      $('#playground'),
+        jester.scroll('horizontal'),
+        {
+          start: function(){ $('#horizontal').className = 'g'; },
+           move: function(){ $('#horizontal span').innerText = this.curX - this.srcX; },
+            end: function(){ $('#horizontal').className = 'r'; }
+        }
+    );
+
+    jester.bind(
+        $('#playground'),
+        jester.pinch,
+        {
+          start: function(){ $('#pinch').className = 'g'; },
+           move: function(){ $('#pinch span').innerText = this.scale.toFixed(2); },
+            end: function(){ $('#pinch').className = 'r'; }
+        }
+    );
+</script>
+
+
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/thechriswalker">thechriswalker</a></p>
         <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
       </footer>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
+    <script src="javascripts/scale.fix.js"></script>    
   </body>
 </html>
