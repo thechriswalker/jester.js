@@ -44,9 +44,9 @@
 
 <pre><code>jester.bind(
     [DOMElement], //the element to list on, e.g. `document`
-    [Recogniser Function], // a function which will determine if this is a gesture (see source)
-    { // an optional object containing optional callbacks to fire once this gesture is recognised,
-      // for the rest of the touch, and on touch end.
+    [Recogniser Function], // which will determine the gesture (see source)
+    { // an optional object containing optional callbacks to fire once this
+      // gesture is recognised, for the rest of the touch, and on touch end.
         start: fn,
         move: fn,
         end: fn
@@ -55,10 +55,11 @@
 </code></pre>
 
 <h3>demo</h3>
+<p>If you have a touch capable browser, this will show your gestures.</p>
 <div class="e">
   <div class="r" id="horizontal">Horizontal Scroll! <span>0</span>px</div>
   <div class="r" id="vertical">Vertical Scroll! <span>0</span>px</div>
-  <div class="r" id="pinch">Pinch! <span>1.00</span>x</div>
+  <div class="r" id="pinch">Pinch! (iOS only...) <span>1.00</span>x</div>
 </div>
 <div id="playground"></div>
 <script src="https://raw.github.com/thechriswalker/jester.js/master/jester.js"></script>
